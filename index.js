@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
 // logger config 
 var logger = require('morgan');
 app.use(logger('dev'));
@@ -23,7 +24,11 @@ app.use(methodOverride('_method'));
 
 // use controller 
 var termsController = require('./controllers/termsController');
-app.use(termsController);
+app.use('/term' , termsController);
+
+app.get('/', function(req,res){
+  res.render('./index')
+})
 
 app.listen(port, function(){
   console.log('---------------------------------------');
